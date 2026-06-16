@@ -85,3 +85,23 @@ terrangafood/
 ## Licence
 
 Projet pédagogique — Usage académique uniquement.
+
+---
+
+## 👥 Équipe — Kouria Tasko
+
+Travail de groupe réalisé dans le cadre du cours **Architecture Logicielle 2** (ESTM, L3 GL).
+
+- **Oumar Hamid Berdjerou** (CP · DO · DB) — [@oberdjerou](https://github.com/oberdjerou)
+- **Oumkalsoum Abdelkerim** (DF · QA) — [@oumkalsoum](https://github.com/oumkalsoum)
+
+Pour le détail des rôles, voir [`CONTRIBUTORS.md`](./CONTRIBUTORS.md).
+Pour le rapport d'exploration, voir [`EXPLORATION.md`](./EXPLORATION.md).
+
+---
+
+## ✍️ Mot de l'équipe
+
+Bienvenue sur notre fork de TerrangaFood ! Ce projet est notre Lab 0 du cours d'Architecture Logicielle 2.
+
+Le repo a été exploré et validé par les deux membres. Le rapport d'exploration complet est dans [`EXPLORATION.md`](./EXPLORATION.md).

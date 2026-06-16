@@ -11,6 +11,8 @@ const errorHandler = require('./middleware/errorHandler');
 // Charger les variables d'environnement
 dotenv.config({ path: '../.env' });
 
+// [DB - Kouria Tasko] Point d'entrée de l'API REST : configuration Express,
+// branchement des routes MVC (restaurants & plats), connexion MongoDB Atlas.
 const app = express();
 const PORT = process.env.PORT || 3001;
 
