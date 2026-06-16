@@ -11,6 +11,7 @@ export default function Header() {
         </Link>
         <nav className="header-nav">
           <Link href="/">Restaurants</Link>
+          <Link href="/mes-commandes">Mes commandes</Link>
           <Link href="/">À propos</Link>
         </nav>
         <span className="header-team" style={{ marginLeft: 'auto', fontSize: '0.85rem', opacity: 0.8 }}>
