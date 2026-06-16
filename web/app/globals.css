@@ -332,3 +332,364 @@ a:hover {
   margin-top: 60px;
   font-size: 0.9rem;
 }
+
+/* ================================== */
+/* === Lab 2 — Commandes (frontend) === */
+/* ================================== */
+
+/* === Page commander/[id] === */
+.commander-page {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.commander-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: white;
+  padding: 32px;
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+}
+
+.commander-header h1 {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+}
+
+.commander-header p {
+  color: var(--accent-light);
+  font-size: 0.95rem;
+}
+
+/* === Formulaire de commande === */
+.commande-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.commande-form h2 {
+  font-size: 1.2rem;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.commande-form-section {
+  margin-bottom: 24px;
+}
+
+.commande-form-section h3 {
+  font-size: 1rem;
+  color: var(--primary);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.commande-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.commande-form-field label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.commande-form-field input,
+.commande-form-field textarea {
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--background);
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.commande-form-field input:focus,
+.commande-form-field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.15);
+}
+
+.commande-form-field textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* === Sélection de plats (checkboxes) === */
+.commande-plats-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.commande-plat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--background);
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.commande-plat-item:hover {
+  border-color: var(--accent);
+}
+
+.commande-plat-item.selected {
+  border-color: var(--accent);
+  background: rgba(149, 213, 178, 0.15);
+}
+
+.commande-plat-item input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.commande-plat-item-nom {
+  flex: 1;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.commande-plat-item-prix {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* === Section total === */
+.commande-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: var(--accent-light);
+  color: var(--primary);
+  border-radius: 8px;
+  margin: 16px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.commande-total-montant {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* === Bouton commander === */
+.btn-commander {
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--primary);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-commander:hover:not(:disabled) {
+  background: var(--primary-light);
+}
+
+.btn-commander:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-commander:disabled {
+  background: var(--text-light);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* === Bouton "Commander ici" (sur page restaurant) === */
+.btn-commander-ici {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: var(--accent);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-commander-ici:hover {
+  background: var(--accent-light);
+  color: var(--primary);
+}
+
+/* === Messages de succès / erreur du formulaire === */
+.commande-message {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.commande-message-success {
+  background: rgba(45, 106, 79, 0.12);
+  color: var(--success);
+  border: 1px solid var(--accent);
+}
+
+.commande-message-error {
+  background: rgba(231, 111, 81, 0.12);
+  color: var(--error);
+  border: 1px solid var(--error);
+}
+
+/* === Page mes-commandes === */
+.mes-commandes-page {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.mes-commandes-page h1 {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 24px;
+}
+
+.mes-commandes-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-light);
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+.commandes-list {
+  display: grid;
+  gap: 16px;
+}
+
+.commande-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.commande-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.commande-card-header h3 {
+  font-size: 1.15rem;
+  color: var(--primary);
+  margin-bottom: 2px;
+}
+
+.commande-card-date {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.commande-card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.commande-card-body strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.commande-card-commentaire {
+  background: var(--background);
+  border-left: 3px solid var(--accent);
+  padding: 8px 12px;
+  margin: 8px 0;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+.commande-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.commande-card-montant {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* === Badge de statut (5 variantes) === */
+.badge-statut {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+}
+
+.badge-statut-attente {
+  background: rgba(244, 162, 97, 0.15);
+  color: var(--warning);
+  border: 1px solid var(--warning);
+}
+
+.badge-statut-confirmee {
+  background: rgba(82, 183, 136, 0.15);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.badge-statut-livraison {
+  background: rgba(27, 67, 50, 0.12);
+  color: var(--primary);
+  border: 1px solid var(--primary-light);
+}
+
+.badge-statut-livree {
+  background: var(--success);
+  color: white;
+  border: 1px solid var(--success);
+}
+
+.badge-statut-annulee {
+  background: rgba(231, 111, 81, 0.12);
+  color: var(--error);
+  border: 1px solid var(--error);
+}
