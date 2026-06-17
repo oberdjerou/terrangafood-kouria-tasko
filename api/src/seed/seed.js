@@ -1,9 +1,16 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const path = require('path');
+const fs = require('fs');
 const Restaurant = require('../models/Restaurant');
 const Plat = require('../models/Plat');
 
-dotenv.config({ path: '../../.env' });
+// Charger les variables d'environnement uniquement si .env existe (mode local).
+// En Docker, les variables sont injectées via docker-compose (pas de fichier .env).
+const envPath = path.resolve(__dirname, '../../../.env');
+if (fs.existsSync(envPath)) {
+  dotenv.config({ path: envPath });
+}
 
 const restaurants = [
   {
