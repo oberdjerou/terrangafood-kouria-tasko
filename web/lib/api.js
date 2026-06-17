@@ -1,6 +1,13 @@
 // === Fonctions d'appel à l'API TerrangaFood ===
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+// Deux URL distinctes pour gérer le cas Docker :
+// - Côté navigateur (Client Components) : NEXT_PUBLIC_API_URL → http://localhost:3001/api
+// - Côté serveur (Server Components, SSR) dans un conteneur : API_INTERNAL_URL →
+//   http://api:3001/api (nom de service Docker). En local hors Docker, retombe sur NEXT_PUBLIC_API_URL.
+const API_URL =
+  typeof window === 'undefined'
+    ? process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api'
+    : process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 
 // Récupérer tous les restaurants
 export async function getRestaurants() {
