@@ -66,7 +66,53 @@ node src/seed/seed.js
 
 ## 2. Render — API Express
 
-*Section à compléter en Tâche 2 (déploiement Render).*
+### Service déployé
+
+| Élément | Valeur |
+| --- | --- |
+| Service name | `terrangafood-api` |
+| **URL publique** | **https://terrangafood-api.onrender.com** |
+| Région | Frankfurt (EU Central) |
+| Branche source | `main` |
+| Auto-deploy | activé (à chaque push sur `main`) |
+| Instance Type | **Free** (cold start ~30-60 s après inactivité) |
+
+### Configuration du service
+
+| Champ Render | Valeur |
+| --- | --- |
+| Root Directory | `api` |
+| Runtime | Node |
+| Build Command | `npm install` |
+| Start Command | `node src/app.js` |
+
+### Variables d'environnement (côté Render uniquement)
+
+| Clé | Valeur |
+| --- | --- |
+| `MONGODB_URI` | URI Atlas complète avec mot de passe (cf. section 1) — **jamais committée** |
+| `PORT` | `3001` |
+
+### Vérification après déploiement
+
+```bash
+curl https://terrangafood-api.onrender.com/
+# → {"message":"Bienvenue sur l'API TerrangaFood 🍛","version":"0.0.0", ...}
+
+curl https://terrangafood-api.onrender.com/api/restaurants
+# → tableau des 5 restaurants (Chez Fatou, Le Lamantin, ...)
+
+curl https://terrangafood-api.onrender.com/api/plats
+# → tableau des 26 plats
+
+curl https://terrangafood-api.onrender.com/api/commandes
+# → [] (vide tant qu'aucune commande n'a été créée en prod)
+```
+
+### Pièges rencontrés et résolutions (Lab 4)
+
+1. **`Invalid scheme`** au premier déploiement → la variable `MONGODB_URI` avait été ajoutée mais le redeploy n'avait pas tourné après. Solution : **Manual Deploy → Deploy latest commit** après chaque modif d'env var.
+2. **`Could not connect to any servers`** au 2e déploiement → la whitelist Atlas n'incluait pas l'IP variable de Render (Free tier ne donne pas d'IP fixe). Solution : ajouter `0.0.0.0/0` dans Atlas → Network Access.
 
 ---
 
