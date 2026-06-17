@@ -4,6 +4,25 @@ Plateforme de commande de plats auprès de restaurants dakarois.
 
 **Projet pédagogique** — Architecture Logicielle 2 — L3 Génie Logiciel — UCAD / ESP
 
+---
+
+## 🌐 URLs de production
+
+| Service | URL | Tech |
+| --- | --- | --- |
+| 🛍️ **Frontend** | **https://terrangafood-kouria-tasko.vercel.app** | Next.js 14 (Vercel) |
+| 🔌 **API** | **https://terrangafood-api.onrender.com** | Express + Mongoose (Render) |
+| 🗄️ Base de données | MongoDB Atlas (M0 free) — `terrangafood` | Mongo 7 |
+
+> ⚠️ **Avant une démo** : « réveiller » l'API Render (qui s'endort après 15 min d'inactivité sur le tier Free) au moins **2 minutes** avant en exécutant :
+> ```bash
+> curl https://terrangafood-api.onrender.com/
+> ```
+> Au premier appel, comptez **30-60 secondes** de cold start. Une fois chaude, latence ~0.3 s.
+
+Configuration complète du déploiement : voir [`DEPLOY.md`](./DEPLOY.md).
+Tests de bout en bout en production : voir [`TESTS-LAB4.md`](./TESTS-LAB4.md).
+
 ## Stack technique
 
 | Module | Stack |
