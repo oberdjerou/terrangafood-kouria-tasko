@@ -3,14 +3,20 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
+const path = require('path');
+const fs = require('fs');
 
 const restaurantRoutes = require('./routes/restaurants');
 const platRoutes = require('./routes/plats');
 const commandeRoutes = require('./routes/commandes');
 const errorHandler = require('./middleware/errorHandler');
 
-// Charger les variables d'environnement
-dotenv.config({ path: '../.env' });
+// Charger les variables d'environnement uniquement si .env existe (mode local).
+// En Docker, les variables sont injectées via docker-compose (pas de fichier .env).
+const envPath = path.resolve(__dirname, '../../.env');
+if (fs.existsSync(envPath)) {
+  dotenv.config({ path: envPath });
+}
 
 // [DB - Kouria Tasko] Point d'entrée de l'API REST : configuration Express,
 // branchement des routes MVC (restaurants & plats), connexion MongoDB Atlas.
