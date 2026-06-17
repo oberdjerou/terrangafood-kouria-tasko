@@ -28,6 +28,10 @@ services:
     container_name: terrangafood-web
     ports:
       - "3000:3000"
+    environment:
+      # URL utilisée par les Server Components (SSR) : nom de service Docker.
+      # NEXT_PUBLIC_API_URL (build arg) reste valable côté navigateur.
+      - API_INTERNAL_URL=http://api:3001/api
     depends_on:
       - api
     restart: unless-stopped
