@@ -118,7 +118,54 @@ curl https://terrangafood-api.onrender.com/api/commandes
 
 ## 3. Vercel — Frontend Next.js
 
-*Section à compléter en Tâche 3 (déploiement Vercel).*
+### Service déployé
+
+| Élément | Valeur |
+| --- | --- |
+| Project name | `terrangafood-kouria-tasko` |
+| **URL publique** | **https://terrangafood-kouria-tasko.vercel.app** |
+| Région build | Washington DC (iad1) |
+| Branche source | `main` |
+| Auto-deploy | activé (chaque push sur `main` → nouveau déploiement Production) |
+| Plan | Hobby (gratuit) |
+
+### Configuration du projet
+
+| Champ Vercel | Valeur |
+| --- | --- |
+| Framework Preset | **Next.js** *(critique — voir piège ci-dessous)* |
+| Root Directory | `web` |
+| Build Command | `next build` (auto-détecté) |
+| Output Directory | `.next` (auto-détecté) |
+| Install Command | `npm install` (auto-détecté) |
+| Node version | 20.x |
+
+### Variables d'environnement (côté Vercel)
+
+| Clé | Valeur | Environments |
+| --- | --- | --- |
+| `NEXT_PUBLIC_API_URL` | `https://terrangafood-api.onrender.com/api` | Production, Preview, Development |
+
+> ⚠️ **Le suffixe `/api` est obligatoire**. Sans lui, le frontend appelle l'API root (`https://...onrender.com/restaurants`) → 404 sur tous les fetch.
+
+### Vérification après déploiement
+
+```bash
+curl -I https://terrangafood-kouria-tasko.vercel.app/
+# → HTTP/2 200
+
+curl -s https://terrangafood-kouria-tasko.vercel.app/ | grep -c "Chez Fatou"
+# → 1 (et 5 cartes restaurant-card-body au total)
+
+curl -I https://terrangafood-kouria-tasko.vercel.app/mes-commandes
+# → HTTP/2 200
+```
+
+### Pièges rencontrés et résolutions (Lab 4)
+
+1. **`Error: No Output Directory named "public" found`** au build initial → Framework Preset Vercel était sur "Other" au lieu de "Next.js". Du coup Vercel cherchait un dossier `public/` (sortie HTML statique) au lieu de comprendre `.next/`. Solution : Vercel → Settings → Build & Development Settings → Framework Preset = **Next.js** → Save → Redeploy.
+2. **Premier chargement lent (~30-60 s)** : normal. L'API Render Free se met en veille après 15 min sans trafic, le 1er fetch SSR doit la réveiller. Une fois chaude, les requêtes suivantes sont instantanées.
+3. **Tests SSR locaux Docker** (cf. Lab 3 PR #15) restent valables : la même logique `typeof window === 'undefined'` permet d'utiliser des URLs différentes côté serveur et côté navigateur. En prod Vercel, `NEXT_PUBLIC_API_URL` est utilisée des deux côtés car les serveurs Vercel atteignent Render sans souci via Internet.
 
 ---
 
